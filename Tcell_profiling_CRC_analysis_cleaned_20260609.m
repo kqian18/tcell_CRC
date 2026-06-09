@@ -1,7 +1,7 @@
 %% Analysis CRC T cell profiling CyCIF
 %  last modified: Kristin Qian 2026/06/09
 
-%% run CyCIF_importgroup_KQ.m
+%% run CyCIF_importgroup.m
 % imported single cell tables into data structure 
 
 %% Generate summary tables
