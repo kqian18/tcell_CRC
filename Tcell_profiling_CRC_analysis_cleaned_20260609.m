@@ -93,37 +93,6 @@ sumCD45posTumor = join(sumCD45posTumor, slideInfo, 'Keys', 'slideName');
 sumCD45pos = varfun(@mean,alldata(alldata.CD45p == 1, :),'GroupingVariables','slideName');
 sumCD45pos = join(sumCD45pos, slideInfo, 'Keys', 'slideName');
 
-%% Boxplot (all intensity)
-
-sum2 = sumTumor;
-title1 = '';
-
-% Define the two types you want to include
-selectedTypes = {'mutant', 'WT'};
-
-% Filter the rows in summarytable where Type matches one of the selectedTypes
-filteredRows = ismember(sum2.RNF43_659_status, selectedTypes);
-
-% Apply the filtering
-filteredTable = sum2(filteredRows, :);
-
-
-figure('units','normalized','outerposition',[0 0 1 1]);
-for i = 1:length(label1)
-    marker1 = strcat('mean_',label1{i});
-    subplot(3,7,i);
-    %myboxplot3(log(sum2{:,marker1}),sum2.RNF43_659_status);
-    myboxplot2d(log(filteredTable{:,marker1}),filteredTable.RNF43_659_status);
-    % Use filteredTable in your function
-    %myboxplot2d(log(filteredTable{:, marker1}), filteredTable.RNF43_659_status);
-    ylabel('Intensity(log)');
-    title(label1{i},'Interpreter','none');
-end
-
-set(gcf,'color','w');
-sgtitle(title1);
-
-
 %% Boxplot (all gated markers)
 
 %sum2 = sumTumor;
@@ -144,7 +113,7 @@ for i = 1:length(sublabels)
     marker1 = sublabels{i};
     subplot(2,3,i);
     %myboxplot3(sumAll_sub{:,marker1}*100,sumAll_sub.MMR_status);
-    myboxplot3_nosig(sumTumor_subset{:,marker1}*100,sumTumor_subset.MMR_status);
+    myboxplot3_nosig(sumTumor{:,marker1}*100,sumTumor_subset.MMR_status);
     ytickformat('percentage');
     title(sublabels{i},'Interpreter','none');
 end
